@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SearchOURLibary</title>
+<meta charset="utf-8">
+</head>
+<style media="screen">
+body{
+background-image:url(nn.png) ;
+background-size: cover;
+background-repeat: repeat ;
+background-position: right top;
+background-attachment:fixed;
+font-family: Arial, Helvetica, sans-serif;  }
+		 
+table {
+border-collapse: collapse;
+display: flex;
+ font-family: Tahoma, Geneva, sans-serif;
+margin-left:580px ; 
+margin-top:20px; }
+
+table td {
+padding: 15px;
+color: black;
+border:4px solid #D7C8B5; }
+
+.d{
+margin-left:605px ; 
+margin-top:470px; 
+}
+</style> <body>
+
+<form action="" method="POST">
+<div class='d'> 
+<input type="text" name="tx" placeholder="Enter to search"> 
+<input type="submit"name="sb" value="Search"> 
+</div>
+</form>
+
+
+<?php
+$connect=mysqli_connect('localhost','root','','lipary');
+echo "";	
+echo "<table class= 'country '"; 
+echo "<tr><td>"." ID" ."</td><td>"." Auther name"."</td><td>"." Status" ."</td><td>"."Book name "."</td></tr>";
+	
+ if (isset($_POST['sb'] ))
+ $sb=$_POST['tx'];
+ $sql="select * from book where bookName='$sb'";
+ $result=mysqli_query($connect , $sql) or die("bad : $sql");
+ $query = $connect->query($sql);
+ while($row = $result->fetch_assoc()){
+echo "<tr><td>".$row["id"]."</td><td>".$row["Authername"] ."</td><td>".$row["Status"] ."</td><td>".$row["bookName"] ."</tr><br>";  
+}
+
+ $sb=$_POST['tx'];
+ $sql="select * from book where id='$sb'";
+ $result=mysqli_query($connect , $sql) or die("bad : $sql");
+ $query = $connect->query($sql);
+ while($row = $result->fetch_assoc()){
+echo "<tr><td>".$row["id"]."</td><td>".$row["Authername"] ."</td><td>".$row["Status"] ."</td><td>".$row["bookName"] ."</tr><br>";  
+}
+
+ $sb=$_POST['tx'];
+ $sql="select * from book where Authername='$sb'";
+ $result=mysqli_query($connect , $sql) or die("bad : $sql");
+ $query = $connect->query($sql);
+  while($row = $result->fetch_assoc()){
+echo "<tr><td>".$row["id"]."</td><td>".$row["Authername"] ."</td><td>".$row["Status"] ."</td><td>".$row["bookName"] ."</tr><br>";  
+}
+
+?>
+</body> </html>
